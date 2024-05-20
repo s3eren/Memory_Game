@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -16,7 +17,7 @@ namespace Memory_Game
         List<int> numbers = new List<int> { 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, };
         string firstChoice;
         string secondChoice;
-        int tires;
+        int tries;
         List<PictureBox> pictures = new List<PictureBox>();
         PictureBox picA;
         PictureBox picB;
@@ -54,7 +55,22 @@ namespace Memory_Game
 
         private void TimeEvent(object sender, EventArgs e)
         {
+            countDownTime--;
 
+            lblTimeLeft.Text = "Time Left: " + countDownTime;
+
+            if (countDownTime < 1)
+            {
+                GameOver("You Lose ( Timer ended )");
+
+                foreach (PictureBox x in pictures)
+                {
+                    if (x.Tag != null)
+                    {
+                        x.Image = Image.FromFile("kuvat/" + (string)x.Tag + ".png");
+                    }
+                }
+            }
         }
 
         private void LoadPictures()
@@ -68,7 +84,7 @@ namespace Memory_Game
                 PictureBox newPic = new PictureBox();
                 newPic.Height = 50;
                 newPic.Width = 50;
-                newPic.BackColor = Color.LightGray;
+                newPic.BackColor = Color.LightBlue;
                 newPic.SizeMode = PictureBoxSizeMode.StretchImage;
                 newPic.Click += NewPic_Click;
                 pictures.Add(newPic );
@@ -96,26 +112,93 @@ namespace Memory_Game
 
         private void NewPic_Click(object sender, EventArgs e)
         {
-           
+           if (gameOver)
+            {
+                return;
+            }
+
+           if (firstChoice == null)
+            {
+                picA = sender as PictureBox;
+                if (picA.Tag != null && picA.Image == null)
+                {
+                    picA.Image = Image.FromFile("kuvat/" + (string)picA.Tag + ".png");
+                    firstChoice = (string)picA.Tag;
+                }
+            }
+           else if(secondChoice == null)
+            {
+                picB = sender as PictureBox;
+
+                if (picB.Tag != null && picB.Image == null)
+                {
+                    picB.Image = Image.FromFile("kuvat/" + (string)picB.Tag + ".png");
+                    secondChoice = (string)picB.Tag;
+                }
+            }
+            else
+            {
+                CheckPictures(picA, picB);
+            }
         }
         private void RestartGame()
         {
+            var randomList = numbers.OrderBy(x => Guid.NewGuid()).ToList();
 
+            numbers = randomList;
+
+            for (int i = 0; i < pictures.Count; i++)
+            {
+                pictures[i].Image = null;
+                pictures[i].Tag = numbers[i].ToString();
+            }
+
+            tries = 0;
+            lblStatus.Text = "Mismatched: " + tries + " times.";
+            lblTimeLeft.Text = "Time Left: " + totalTime;
+            gameOver = false;
+            GameTimer.Start();
+            countDownTime = totalTime;
         }
 
         private void RestartGameEvent(object sender, EventArgs e)
         {
-
+            RestartGame();
         }
 
         private void CheckPictures(PictureBox A, PictureBox B)
         {
+            if (firstChoice == secondChoice)
+            {
+                A.Tag = null;
+                B.Tag = null;
+            }
+            else
+            {
+                tries++;
+                lblStatus.Text = "Mismatched " + tries + " times.";
+            }
+            firstChoice = null;
+            secondChoice = null;
 
+            foreach (PictureBox pics in pictures.ToList())
+            {
+                if (pics.Tag != null)
+                {
+                    pics.Image = null;
+                }
+            }
+            if (pictures.All(o => o.Tag == pictures[0].Tag))
+            {
+                GameOver("Congrats! YOU WON!");
+            }
         }
 
-        private void GameOver()
+        private void GameOver(string msg)
         {
-
+            GameTimer.Stop();
+            gameOver = true;
+            MessageBox.Show(msg + " Start over by clicking the Restart button!");
         }
     }
 }
