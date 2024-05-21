@@ -38,10 +38,10 @@
             // lblStatus
             // 
             this.lblStatus.AutoSize = true;
-            this.lblStatus.Font = new System.Drawing.Font("Algerian", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStatus.Location = new System.Drawing.Point(364, 35);
+            this.lblStatus.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStatus.Location = new System.Drawing.Point(584, 32);
             this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(132, 18);
+            this.lblStatus.Size = new System.Drawing.Size(87, 20);
             this.lblStatus.TabIndex = 0;
             this.lblStatus.Text = "Start or End ";
             this.lblStatus.Click += new System.EventHandler(this.label1_Click);
@@ -49,21 +49,23 @@
             // lblTimeLeft
             // 
             this.lblTimeLeft.AutoSize = true;
-            this.lblTimeLeft.Font = new System.Drawing.Font("Algerian", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTimeLeft.Location = new System.Drawing.Point(598, 35);
+            this.lblTimeLeft.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTimeLeft.ForeColor = System.Drawing.Color.LightSeaGreen;
+            this.lblTimeLeft.Location = new System.Drawing.Point(427, 32);
             this.lblTimeLeft.Name = "lblTimeLeft";
-            this.lblTimeLeft.Size = new System.Drawing.Size(125, 18);
+            this.lblTimeLeft.Size = new System.Drawing.Size(90, 20);
             this.lblTimeLeft.TabIndex = 1;
-            this.lblTimeLeft.Text = "Time Left: 30";
+            this.lblTimeLeft.Text = "Time Left: 40";
             this.lblTimeLeft.Click += new System.EventHandler(this.lblTimeLeft_Click);
             // 
             // btnRestart
             // 
-            this.btnRestart.BackColor = System.Drawing.Color.Yellow;
-            this.btnRestart.Font = new System.Drawing.Font("Algerian", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRestart.Location = new System.Drawing.Point(377, 71);
+            this.btnRestart.BackColor = System.Drawing.Color.LightSeaGreen;
+            this.btnRestart.Font = new System.Drawing.Font("Impact", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRestart.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnRestart.Location = new System.Drawing.Point(417, 74);
             this.btnRestart.Name = "btnRestart";
-            this.btnRestart.Size = new System.Drawing.Size(103, 46);
+            this.btnRestart.Size = new System.Drawing.Size(142, 52);
             this.btnRestart.TabIndex = 2;
             this.btnRestart.Text = "Restart";
             this.btnRestart.UseVisualStyleBackColor = false;

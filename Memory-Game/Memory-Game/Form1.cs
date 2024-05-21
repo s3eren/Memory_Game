@@ -14,14 +14,14 @@ namespace Memory_Game
     public partial class Form1 : Form
     {
 
-        List<int> numbers = new List<int> { 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, };
+        List<int> numbers = new List<int> { 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8,};
         string firstChoice;
         string secondChoice;
         int tries;
         List<PictureBox> pictures = new List<PictureBox>();
         PictureBox picA;
         PictureBox picB;
-        int totalTime = 30;
+        int totalTime = 40;
         int countDownTime;
         bool gameOver = false;
 
@@ -79,17 +79,17 @@ namespace Memory_Game
             int topPos = 20;
             int rows = 0;
 
-            for (int i = 0; i < 12; i++)
+            for (int i = 0; i < 16; i++)
             {
                 PictureBox newPic = new PictureBox();
-                newPic.Height = 50;
-                newPic.Width = 50;
-                newPic.BackColor = Color.LightBlue;
+                newPic.Height = 55;
+                newPic.Width = 55;
+                newPic.BackColor = Color.LightGreen;
                 newPic.SizeMode = PictureBoxSizeMode.StretchImage;
                 newPic.Click += NewPic_Click;
                 pictures.Add(newPic );
 
-                if (rows < 3)
+                if (rows < 4)
                 {
                     rows++;
                     newPic.Left = leftPos;
@@ -98,7 +98,7 @@ namespace Memory_Game
                     leftPos = leftPos + 60;
                 }
 
-                if (rows == 3)
+                if (rows == 4)
                 {
                     leftPos = 20;
                     topPos += 60;
