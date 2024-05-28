@@ -12,3 +12,5 @@ Kuvia pelistä:
 ![image](https://github.com/s3eren/Memory_Game/assets/164142609/f9088575-121f-45fe-bca0-a5e6ee12c974)
 
 
+
+
